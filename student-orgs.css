@@ -1,0 +1,16 @@
+.org-title {
+    background: url('/content/dam/bc1/schools/law/js/images/details_open.png') no-repeat left center;
+    cursor: pointer;
+}
+.details-control, .org-desc {padding-left:20px;}
+
+.org-desc {
+	display:none;
+	background-color: #EDEFEF;
+	padding:20px;
+	
+	}
+
+.open {background: url('/content/dam/bc1/schools/law/js/images/details_close.png') no-repeat left center;}
+
+.openAll, .closeAll {margin-right: 20px; margin-bottom: 10px;}

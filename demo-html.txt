@@ -1,0 +1,4 @@
+<script type="text/javascript" src="/content/dam/bc1/schools/law/js/student-orgs/tabletop.js"></script>
+<script type="text/javascript" src="/content/dam/bc1/schools/law/js/student-orgs/student-orgs.js"></script>
+<link rel="stylesheet" type="text/css" href="/content/dam/bc1/schools/law/js/student-orgs/student-orgs.css">
+<div id="tabletop-display"></div>
