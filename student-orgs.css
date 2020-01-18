@@ -1,3 +1,7 @@
+#pagecontent #tabletop-display .btn.btn-default, #pagecontent #tabletop-display .btn {
+	width:auto;
+}
+
 .org-title {
     background: url('/content/dam/bc1/schools/law/js/images/details_open.png') no-repeat left center;
     cursor: pointer;
