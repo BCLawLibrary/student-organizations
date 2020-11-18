@@ -1,15 +1,30 @@
-$( document ).ready(function() {init() });
+/*
+ * Updated October 2020
+ * Tabletop (Google Sheets API V3) is going away Jan 2021
+ * Replaced Tabletop with Sheets API V4 
+ */
 
+$( document ).ready(function() {
 
-var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1rcA7clSXgizJEkfM9kAG2hs6HlP3uW45SKZ3wT5Oou8&output=html';
+	//fetch list from Sheets API V4
+	$.ajax({
+		url:'https://sheets.googleapis.com/v4/spreadsheets/1rcA7clSXgizJEkfM9kAG2hs6HlP3uW45SKZ3wT5Oou8/values/A:B?key=AIzaSyD8Y28YJpVhE4XlVlOoA74Ws47YdPz5nGA',
+	}).done(function(json) {
+		var data = json['values'];//spreadsheet data lives in an array with the name values
+		//rewrite data to an object with key-value pairs. This is also a chance to rename or ignore columns
+		data = data.map(function(n,i) {
+			var myObject = {
+				name:n[0],
+				description:n[1]
+			}
+			return myObject;
+		});
+		data.splice(0,1); //remove the first row, which contains the orginal column headers
+		showInfo(data); //send data to callback
+	});
 
-  function init() {
-    Tabletop.init( { key: public_spreadsheet_url,
-                     callback: showInfo,
-                     simpleSheet: true } )
-  }
-
-  function showInfo(data, tabletop) {
+	//callback: display and format list
+  function showInfo(data) {
     console.log(data);
     var display = $('div#tabletop-display')
     
@@ -27,8 +42,6 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&h
 	var items = [];
 	$.each( data, function( key, value ) {
 		
-				
-	
 		var div = $('<div>')
 			.addClass('org');
 			
@@ -52,13 +65,13 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&h
 		orgDesc.appendTo(div);
 		
 		}
-		else
+		else {
 			var title = $('<span>')
 			.addClass('details-control')
 			.addClass('empty')
 			.text(value.name)
 			.appendTo(div);	
-		
+		}
 			
 		if (value.url) {
 			var button =$('<span>')
@@ -74,7 +87,6 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&h
 			
 		}
 			
-		
 		div.appendTo(display);
     	
     });
@@ -108,6 +120,6 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheet/pub?hl=en_US&h
     
   }
 
-
+});
 
 	
